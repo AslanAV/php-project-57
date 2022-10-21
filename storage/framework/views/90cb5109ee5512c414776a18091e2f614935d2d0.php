@@ -130,4 +130,4 @@
         </div>
     </body>
 </html>
-<?php /**PATH /home/aslan/PhpstormProjects/php-project-57/resources/views/welcome.blade.php ENDPATH**/ ?>
+<?php /**PATH /home/aslan/PhpstormProjects/php-project-57/resources/views/home.blade.php ENDPATH**/ ?>

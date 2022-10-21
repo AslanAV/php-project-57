@@ -47,3 +47,10 @@ ide-helper:
 	php artisan ide-helper:gen
 	php artisan ide-helper:meta
 	php artisan ide-helper:mod -n
+
+setup-railway:
+	php artisan key:gen --ansi
+	php artisan migrate
+	php artisan db:seed
+	npm ci
+	npm run build

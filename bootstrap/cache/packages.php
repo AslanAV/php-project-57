@@ -48,6 +48,17 @@
       0 => 'Termwind\\Laravel\\TermwindServiceProvider',
     ),
   ),
+  'rollbar/rollbar-laravel' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Rollbar\\Laravel\\RollbarServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Rollbar' => 'Rollbar\\Laravel\\Facades\\Rollbar',
+    ),
+  ),
   'spatie/laravel-ignition' => 
   array (
     'providers' => 

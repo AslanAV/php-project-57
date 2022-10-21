@@ -1304,3 +1304,8 @@ connection to server at \"127.0.0.1\", port 5432 failed: FATAL:  password authen
 #35 /home/aslan/PhpstormProjects/php-project-57/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()
 #36 {main}
 "} 
+[2022-10-20 19:57:23] local.DEBUG: Test debug message  
+[2022-10-20 20:00:38] local.DEBUG: Test debug message  
+[2022-10-20 20:00:40] local.DEBUG: Test debug message  
+[2022-10-20 20:45:11] testing.DEBUG: Test debug message  
+[2022-10-20 20:45:17] testing.DEBUG: Test debug message  

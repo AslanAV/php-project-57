@@ -13,6 +13,7 @@
         "laravel/framework": "^v9.36.4",
         "laravel/sanctum": "^v3.0.1",
         "laravel/tinker": "^v2.7.2",
+        "laravel/ui": "^4.0",
         "rollbar/rollbar-laravel": "^v7.2.0"
     },
     "require-dev": {

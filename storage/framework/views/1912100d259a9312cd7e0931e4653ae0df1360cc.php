@@ -6,7 +6,10 @@
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
     <meta name="csrf-param" content="_token">
     <title>Анализатор страниц</title>
-    <?php echo app('Illuminate\Foundation\Vite')('resources/js/app.js'); ?>
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <?php echo app('Illuminate\Foundation\Vite')(['resources/js/app.js']); ?>
 </head>
 <body class="min-vh-100 d-flex flex-column">
 <header class="flex-shrink-0">

@@ -1,32 +1,25 @@
 {
     "name": "hexlet/code",
     "type": "project",
-    "description": "php project lvl4",
-    "keywords": [
-        "framework",
-        "laravel"
-    ],
+    "description": "php project lvl-4",
+    "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^8.1.2",
-        "guzzlehttp/guzzle": "^v7.5.0",
-        "laravel/framework": "^v9.36.4",
-        "laravel/sanctum": "^v3.0.1",
-        "laravel/tinker": "^v2.7.2",
-        "laravel/ui": "^4.0",
-        "rollbar/rollbar-laravel": "^v7.2.0"
+        "php": "^8.1",
+        "guzzlehttp/guzzle": "^7.5.0",
+        "laravel/framework": "^9.36.4",
+        "laravel/sanctum": "^3.0.1",
+        "laravel/tinker": "^2.7.2",
+        "laravel/ui": "^4.0"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-latest",
-        "barryvdh/laravel-ide-helper": "^v2.12.3",
-        "fakerphp/faker": "^v1.20.0",
-        "laravel/pint": "^v1.2.0",
-        "laravel/sail": "^v1.16.2",
-        "mockery/mockery": "^v1.5.1",
-        "nunomaduro/collision": "^v6.3.1",
-        "phpunit/phpunit": "^v9.5.25",
-        "spatie/laravel-ignition": "^v1.5.2",
-        "squizlabs/php_codesniffer": "^v3.7.1"
+        "fakerphp/faker": "^1.20.0",
+        "laravel/pint": "^1.2.0",
+        "laravel/sail": "^1.16.2",
+        "mockery/mockery": "^1.5.1",
+        "nunomaduro/collision": "^6.3.1",
+        "phpunit/phpunit": "^9.5.25",
+        "spatie/laravel-ignition": "^1.5.2"
     },
     "autoload": {
         "psr-4": {
@@ -41,8 +34,6 @@
         }
     },
     "scripts": {
-        "phpcs": "phpcs",
-        "phpcbf": "phpcbf",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"

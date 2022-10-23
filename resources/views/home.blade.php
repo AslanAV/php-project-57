@@ -1,18 +1,23 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 
 @section('content')
-    <div class="row mt-3">
-        <div class="col-12 col-md-10 col-lg-8 mx-auto border rounded-3 bg-light p-5">
-            <h1 class="display-3">Анализатор страниц</h1>
-            <p class="lead">Бесплатно проверяйте сайты на SEO пригодность</p>
-            <form action="" method="POST"
-                  class="d-flex justify-content-center">
-                @csrf
-                <input type="text" name="url[name]" value="" class="form-control form-control-lg"
-                       placeholder="https://www.example.com">
-                <input type="submit" class="btn btn-primary btn-lg ms-3 px-5 text-uppercase mx-3"
-                       value="Проверить">
-            </form>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Dashboard') }}</div>
+
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    {{ __('You are logged in!') }}
+                </div>
+            </div>
         </div>
     </div>
+</div>
 @endsection

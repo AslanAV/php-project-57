@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 
-use Illuminate\Support\Facades\App;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,8 +26,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        If(App::environment('production')) {
-            URL::forceSchema('https');
+        if (env('FORCE_HTTPS', false)) {// Default value should be false for local server
+            URL::forceScheme('https');
         }
+        Paginator::useBootstrapFive();
     }
 }

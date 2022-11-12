@@ -9,79 +9,49 @@ use Illuminate\Http\Response;
 
 class LabelController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
     public function index()
     {
-        //
+        $labels = Label::paginate(15);
+        return view('labels.index', compact('labels'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
     public function create()
     {
-        //
+        return view('labels.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param StoreLabelRequest $request
-     * @return Response
-     */
     public function store(StoreLabelRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $label = new Label();
+        $label->fill($validated);
+        $label->save();
+        flash('Метка успешно создана')->success();
+
+        return redirect()->route('labels.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param Label $label
-     * @return Response
-     */
-    public function show(Label $label)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Label $label
-     * @return Response
-     */
     public function edit(Label $label)
     {
-        //
+        return view('labels.edit', compact('label'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param UpdateLabelRequest $request
-     * @param Label $label
-     * @return Response
-     */
     public function update(UpdateLabelRequest $request, Label $label)
     {
-        //
+        $validated = $request->validated();
+
+        $label->fill($validated);
+        $label->save();
+        flash('Метка успешно изменена')->success();
+
+        return redirect()->route('labels.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param Label $label
-     * @return Response
-     */
     public function destroy(Label $label)
     {
-        //
+        $label->delete();
+        flash('Метка успешно удалена')->success();
+        return redirect()->route('labels.index');
     }
 }

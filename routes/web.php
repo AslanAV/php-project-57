@@ -17,10 +17,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 })->name('home');
 
-
+Route::resources([
+    '/task_statuses' => TaskStatusController::class,
+    '/tasks' => TaskController::class,
+    '/labels' => LabelController::class,
+]);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -28,8 +32,4 @@ Route::get('/dashboard', function () {
 
 require __DIR__ . '/auth.php';
 
-Route::resources([
-    '/task_statuses' => TaskStatusController::class,
-    '/tasks' => TaskController::class,
-    '/labels' => LabelController::class,
-]);
+

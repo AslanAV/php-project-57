@@ -48,5 +48,6 @@ ide-helper:
 	php artisan ide-helper:meta
 	php artisan ide-helper:mod -n
 
-refresh-seed:
-	php artisan migrate:refresh --seed
+sail-migrate-refresh-seed:
+	./vendor/bin/sail artisan migrate:refresh --seed
+

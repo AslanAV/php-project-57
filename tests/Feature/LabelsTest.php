@@ -25,9 +25,7 @@ class LabelsTest extends TestCase
     {
         $response = $this->actingAs($this->user)
             ->withSession(['banned' => false])
-            ->get(route('labels.edit', $this->label));
-
-        $response = $this->get(route('labels.index'));
+            ->get(route('labels.index'));
 
         $response->assertOk();
     }

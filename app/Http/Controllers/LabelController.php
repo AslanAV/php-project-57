@@ -6,6 +6,7 @@ use App\Http\Requests\StoreLabelRequest;
 use App\Http\Requests\UpdateLabelRequest;
 use App\Models\Label;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class LabelController extends Controller
 {
@@ -28,6 +29,10 @@ class LabelController extends Controller
 
     public function store(StoreLabelRequest $request)
     {
+        if (Auth::check()) {
+            abort(403);
+        }
+
         $validated = $request->validated();
 
         $label = new Label();

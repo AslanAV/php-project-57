@@ -27,16 +27,20 @@
         @foreach($labels as $label)
         <tr class="border-b border-dashed text-left">
             <td>{{ $label->id }}</td>
-            <td>{{$label->name}}</td>
-            <td>{{$label->description}}</td>
+            <td>{{ $label->name }}</td>
+            <td>{{ $label->description }}</td>
             <td>{{ $label->created_at }}</td>
             @auth()
             <td>
-                <form style="display: inline-block" action="{{ route('labels.destroy', $label) }}" method="POST">
-                @method('DELETE')
-                @csrf
-                    <button type="submit" class="text-red-600 hover:text-red-900">Удалить</button>
-                </form>
+                <a
+                    class="text-red-600 hover:text-red-900"
+                    rel="nofollow"
+                    data-method="delete"
+                    data-confirm="Вы уверены?"
+                    href="{{ route('labels.destroy', $label) }}"
+                >
+                    Удалить
+                </a>
                 <a class="text-blue-600 hover:text-blue-900"
                    href="{{ route("labels.edit", $label) }}"
                 >

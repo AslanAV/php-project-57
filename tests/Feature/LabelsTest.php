@@ -49,7 +49,7 @@ class LabelsTest extends TestCase
         $label = ['name' => 'name', 'description' => 'description'];
         $response = $this->post(route('labels.store', $label));
 
-        $response->assertRedirect('/login');
+        $response->assertRedirect('/labels');
 
         $this->assertDatabaseMissing('labels', $label);
 
@@ -82,7 +82,7 @@ class LabelsTest extends TestCase
 
         $response = $this->put(route('labels.update', $this->label), $newLabel);
 
-        $response->assertRedirect('/login');
+        $response->assertRedirect('/labels');
 
         $this->assertDatabaseMissing('labels', $newLabel);
     }
@@ -102,7 +102,7 @@ class LabelsTest extends TestCase
     {
         $response = $this->get(route('labels.create'));
 
-        $response->assertRedirect();
+        $response->assertStatus(403);
     }
 
 }

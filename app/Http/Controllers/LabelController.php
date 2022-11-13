@@ -10,11 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class LabelController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
         $labels = Label::paginate(15);
@@ -23,14 +18,18 @@ class LabelController extends Controller
 
     public function create()
     {
-
+        if (Auth::guest()) {
+            return abort(403);
+        }
         return view('labels.create');
     }
 
     public function store(StoreLabelRequest $request)
     {
+        if (Auth::guest()) {
+             return redirect()->route('labels.index');
+        }
         $validated = $request->validated();
-
         $label = new Label();
         $label->fill($validated);
         $label->save();
@@ -46,6 +45,10 @@ class LabelController extends Controller
 
     public function update(UpdateLabelRequest $request, Label $label)
     {
+        if (Auth::guest()) {
+            return redirect()->route('labels.index');
+        }
+
         $validated = $request->validated();
 
         $label->fill($validated);

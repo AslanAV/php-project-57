@@ -39,18 +39,18 @@ class LabelsTest extends TestCase
             ->withSession(['banned' => false])
             ->post(route('labels.store', $label));
 
-        $response->assertRedirect();
+        $response->assertRedirect('/');
 
         $this->assertDatabaseHas('labels', $label);
 
     }
 
-    public function testCreateStorePageWithoutAutorized(): void
+    public function testCreateStorePageWithoutAuthorized(): void
     {
         $label = $this->label->only(['name', 'description']);
         $response = $this->post(route('labels.store', $label));
 
-        $response->assertRedirect();
+        $response->assertRedirect('/login');
 
         $this->assertDatabaseHas('labels', $label);
 
@@ -71,7 +71,16 @@ class LabelsTest extends TestCase
             ->withSession(['banned' => false])
             ->put(route('labels.update', $this->label));
 
-        $response->assertRedirect();
+        $response->assertRedirect('/');
+
+        $this->assertDatabaseHas('labels', $this->label->only(['name', 'description']));
+    }
+
+    public function testUpdatePostWithoutAuthorized(): void
+    {
+        $response = $this->put(route('labels.update', $this->label));
+
+        $response->assertRedirect('/login');
 
         $this->assertDatabaseHas('labels', $this->label->only(['name', 'description']));
     }

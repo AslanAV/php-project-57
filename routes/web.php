@@ -20,14 +20,15 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::resources([
-    '/task_statuses' => TaskStatusController::class,
-    '/tasks' => TaskController::class,
-    '/labels' => LabelController::class,
-]);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
+
+Route::resources([
+    '/task_statuses' => TaskStatusController::class,
+    '/tasks' => TaskController::class,
+    '/labels' => LabelController::class,
+]);

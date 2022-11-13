@@ -9,6 +9,11 @@ use Illuminate\Http\Response;
 
 class LabelController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $labels = Label::paginate(15);
@@ -17,6 +22,7 @@ class LabelController extends Controller
 
     public function create()
     {
+
         return view('labels.create');
     }
 

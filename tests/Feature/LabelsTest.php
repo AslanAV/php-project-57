@@ -32,12 +32,13 @@ class LabelsTest extends TestCase
 
     public function testCreateStorePage(): void
     {
-        $label = $this->label->only(['name', 'description']);
+        $label = ['name' => 'name', 'description' => 'description'];
+
         $response = $this->actingAs($this->user)
             ->withSession(['banned' => false])
             ->post(route('labels.store', $label));
 
-        $response->assertRedirect('/');
+        $response->assertRedirect('/labels');
 
         $this->assertDatabaseHas('labels', $label);
 
@@ -45,12 +46,12 @@ class LabelsTest extends TestCase
 
     public function testCreateStorePageWithoutAuthorized(): void
     {
-        $label = $this->label->only(['name', 'description']);
+        $label = ['name' => 'name', 'description' => 'description'];
         $response = $this->post(route('labels.store', $label));
 
         $response->assertRedirect('/login');
 
-        $this->assertDatabaseHas('labels', $label);
+        $this->assertDatabaseMissing('labels', $label);
 
     }
 
@@ -65,22 +66,25 @@ class LabelsTest extends TestCase
 
     public function testUpdatePost(): void
     {
+        $label = ['name' => 'newName', 'description' => 'newDescription'];
         $response = $this->actingAs($this->user)
             ->withSession(['banned' => false])
-            ->put(route('labels.update', $this->label));
+            ->put(route('labels.update', $this->label), $label);
 
-        $response->assertRedirect('/');
+        $response->assertRedirect('/labels');
 
-        $this->assertDatabaseHas('labels', $this->label->only(['name', 'description']));
+        $this->assertDatabaseHas('labels', $label);
     }
 
     public function testUpdatePostWithoutAuthorized(): void
     {
-        $response = $this->put(route('labels.update', $this->label));
+        $newLabel = ['name' => 'newName', 'description' => 'newDescription'];
+
+        $response = $this->put(route('labels.update', $this->label), $newLabel);
 
         $response->assertRedirect('/login');
 
-        $this->assertDatabaseHas('labels', $this->label->only(['name', 'description']));
+        $this->assertDatabaseMissing('labels', $newLabel);
     }
 
     public function testDeletePost(): void

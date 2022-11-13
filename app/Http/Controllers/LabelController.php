@@ -29,10 +29,6 @@ class LabelController extends Controller
 
     public function store(StoreLabelRequest $request)
     {
-        if (Auth::check()) {
-            abort(403);
-        }
-
         $validated = $request->validated();
 
         $label = new Label();

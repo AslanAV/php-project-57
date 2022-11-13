@@ -6,82 +6,62 @@ use App\Http\Requests\StoreTaskStatusRequest;
 use App\Http\Requests\UpdateTaskStatusRequest;
 use App\Models\TaskStatus;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class TaskStatusController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
     public function index()
     {
-        //
+        $taskStatuses = TaskStatus::paginate(15);
+        return view('taskStatuses.index', compact('taskStatuses'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
     public function create()
     {
-        //
+        if (Auth::guest()) {
+            return abort(403);
+        }
+        return view('taskStatuses.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param StoreTaskStatusRequest $request
-     * @return Response
-     */
     public function store(StoreTaskStatusRequest $request)
     {
-        //
+        if (Auth::guest()) {
+            return redirect()->route('task_statuses.index');
+        }
+        $validated = $request->validated();
+        $taskStatus = new TaskStatus();
+        $taskStatus->fill($validated);
+        $taskStatus->save();
+        flash('Статус успешно создан')->success();
+
+        return redirect()->route('task_statuses.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param TaskStatus $taskStatus
-     * @return Response
-     */
-    public function show(TaskStatus $taskStatus)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param TaskStatus $taskStatus
-     * @return Response
-     */
     public function edit(TaskStatus $taskStatus)
     {
-        //
+        return view('taskStatuses.edit', compact('taskStatus'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param UpdateTaskStatusRequest $request
-     * @param TaskStatus $taskStatus
-     * @return Response
-     */
     public function update(UpdateTaskStatusRequest $request, TaskStatus $taskStatus)
     {
-        //
+        if (Auth::guest()) {
+            return redirect()->route('task_statuses.index');
+        }
+
+        $validated = $request->validated();
+
+        $taskStatus->fill($validated);
+        $taskStatus->save();
+        flash('Статус успешно изменен')->success();
+
+        return redirect()->route('task_statuses.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param TaskStatus $taskStatus
-     * @return Response
-     */
     public function destroy(TaskStatus $taskStatus)
     {
-        //
+        $taskStatus->delete();
+        flash('Статус успешно удален')->success();
+        return redirect()->route('task_statuses.index');
     }
 }

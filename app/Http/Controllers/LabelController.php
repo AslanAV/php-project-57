@@ -13,6 +13,7 @@ class LabelController extends Controller
     public function index()
     {
         $labels = Label::paginate(15);
+
         return view('labels.index', compact('labels'));
     }
 
@@ -31,10 +32,11 @@ class LabelController extends Controller
         }
         $validated = $request->validated();
         $label = new Label();
+
         $label->fill($validated);
         $label->save();
-        flash('Метка успешно создана')->success();
 
+        flash(__('controllers.label_create'))->success();
         return redirect()->route('labels.index');
     }
 
@@ -53,15 +55,16 @@ class LabelController extends Controller
 
         $label->fill($validated);
         $label->save();
-        flash('Метка успешно изменена')->success();
 
+        flash(__('controllers.label_update'))->success();
         return redirect()->route('labels.index');
     }
 
     public function destroy(Label $label)
     {
         $label->delete();
-        flash('Метка успешно удалена')->success();
+
+        flash(__('controllers.label_destroy'))->success();
         return redirect()->route('labels.index');
     }
 }

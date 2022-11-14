@@ -13,6 +13,7 @@ class TaskStatusController extends Controller
     public function index()
     {
         $taskStatuses = TaskStatus::paginate(15);
+
         return view('taskStatuses.index', compact('taskStatuses'));
     }
 
@@ -29,12 +30,14 @@ class TaskStatusController extends Controller
         if (Auth::guest()) {
             return redirect()->route('task_statuses.index');
         }
+
         $validated = $request->validated();
         $taskStatus = new TaskStatus();
+
         $taskStatus->fill($validated);
         $taskStatus->save();
-        flash('Статус успешно создан')->success();
-
+        $message = __('controllers.task_statuses_create');
+        flash($message)->success();
         return redirect()->route('task_statuses.index');
     }
 
@@ -53,15 +56,16 @@ class TaskStatusController extends Controller
 
         $taskStatus->fill($validated);
         $taskStatus->save();
-        flash('Статус успешно изменен')->success();
 
+        flash(__('controllers.task_statuses_update'))->success();
         return redirect()->route('task_statuses.index');
     }
 
     public function destroy(TaskStatus $taskStatus)
     {
         $taskStatus->delete();
-        flash('Статус успешно удален')->success();
+
+        flash(__('controllers.task_statuses_destroy'))->success();
         return redirect()->route('task_statuses.index');
     }
 }

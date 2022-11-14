@@ -3,23 +3,23 @@
 
 <div class="grid col-span-full">
     <h1 class="max-w-2xl mb-4 text-4xl leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white">
-        Метки </h1>
+        {{ __('layout.labels_header') }} </h1>
     @auth()
     <div>
         @csrf
         <a href="{{ route('labels.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Создать метку            </a>
+            {{ __('layout.create_button') }}            </a>
     </div>
     @endauth
     <table class="mt-4">
         <thead class="border-b-2 border-solid border-black text-left" style="text-align: left">
         <tr>
-            <th>ID</th>
-            <th>Имя</th>
-            <th>Описание</th>
-            <th>Дата создания</th>
+            <th>{{ __('layout.table_id') }}</th>
+            <th>{{ __('layout.table_name') }}</th>
+            <th>{{ __('layout.table_description') }}</th>
+            <th>{{ __('layout.table_date_of_creation') }}</th>
             @auth()
-            <th>Действия</th>
+            <th>{{ __('layout.table_actions') }}</th>
             @endauth
         </tr>
         </thead>
@@ -36,15 +36,15 @@
                     class="text-red-600 hover:text-red-900"
                     rel="nofollow"
                     data-method="delete"
-                    data-confirm="Вы уверены?"
+                    data-confirm="{{ __('layout.table_delete_question') }}"
                     href="{{ route('labels.destroy', $label) }}"
                 >
-                    Удалить
+                    {{ __('layout.table_delete') }}
                 </a>
                 <a class="text-blue-600 hover:text-blue-900"
                    href="{{ route("labels.edit", $label) }}"
                 >
-                    Изменить
+                    {{ __('layout.table_edit') }}
                 </a>
             </td>
             @endauth

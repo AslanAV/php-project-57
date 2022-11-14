@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="csrf-param" content="_token" />
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ __('layout.title') }}</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -16,15 +16,15 @@
         <nav class="bg-white border-gray-200 py-2.5 dark:bg-gray-900 shadow-md">
             <div class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
                 <a href="{{ route('home') }}" class="flex items-center">
-                    <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Менеджер задач</span>
+                    <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">{{ __('layout.name') }}</span>
                 </a>
                 @guest()
                     <div class="flex items-center lg:order-2">
                         <a href="{{ route("login") }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                            Вход
+                            {{ __('layout.login') }}
                         </a>
                         <a href="{{ route("register") }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
-                            Регистрация
+                            {{ __('layout.registration') }}
                         </a>
                     </div>
                 @endguest
@@ -34,7 +34,7 @@
                             @csrf
                         </form>
                         <a href="{{ route("logout") }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            выход
+                            {{ __('layout.logout') }}
                         </a>
                     </div>
                 @endauth
@@ -43,15 +43,15 @@
                     <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                         <li>
                             <a href="{{ route("tasks.index") }}" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
-                                Задачи                                </a>
+                                {{ __('layout.tasks') }}                                </a>
                         </li>
                         <li>
                             <a href="{{ route("task_statuses.index") }}" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
-                                Статусы                                </a>
+                                {{ __('layout.task_statuses') }}                                </a>
                         </li>
                         <li>
                             <a href="{{ route("labels.index") }}" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
-                                Метки                                </a>
+                                {{ __('layout.labels') }}                               </a>
                         </li>
                     </ul>
                 </div>

@@ -5,27 +5,28 @@
     <div class="grid col-span-full">
         <h1 class="max-w-2xl mb-4 text-4xl leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white">{{ __('layout.labels_create') }}</h1>
 
-        <form method="POST" action="{{ route('labels.store') }}" accept-charset="UTF-8" class="w-50">
-            @csrf
-            <div class="flex flex-col">
-                <div>
-                    <label for="name">{{ __('layout.table_name') }}</label>
-                </div>
-                <div class="mt-2">
-                    <input class="rounded border-gray-300 w-1/3" name="name" type="text" id="name">
-                </div>
-                @includeWhen($errors->any() ,'layouts.errors-validation')
-                <div class="mt-2">
-                    <label for="description">{{ __('layout.table_description') }}</label>
-                </div>
-                <div class="mt-2">
-                    <textarea class="rounded border-gray-300 w-1/3 h-32" name="description" cols="50" rows="10" id="description"></textarea>
-                </div>
-                <div class="mt-2">
-                    <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit" value="{{ __('layout.create_button') }}">
-                </div>
+        {{ Form::open(['url' => route('labels.store'), 'method' => 'POST', 'class' => 'w-50']) }}
+        <div class="flex flex-col">
+            <div>
+                {{ Form::label('name', __('layout.table_name')) }}
             </div>
-        </form>
+            <div class="mt-2">
+                {{ Form::text('name', '', ['class' => 'form-control rounded border-gray-300 w-1/3']) }}
+            </div>
+            <div>
+                @includeWhen($errors->any() ,'layouts.errors-validation')
+            </div>
+            <div class="mt-2">
+                {{ Form::label('name', __('layout.table_description')) }}
+            </div>
+            <div class="mt-2">
+                {{ Form::textarea('description', '', ['class' => 'form-control rounded border-gray-300 w-1/3 h-32', 'cols' => '50', 'rows' => '10']) }}
+            </div>
+            <div class="mt-2">
+                {{ Form::submit(__('layout.create_button'), ['class' => 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded']) }}
+            </div>
+        </div>
+        {{ Form::close() }}
     </div>
 @endauth
 

@@ -14,13 +14,14 @@ class TaskTest extends TestCase
     use RefreshDatabase;
 
     private User $user;
-    private TaskStatus $taskStatus;
+    private Task $task;
     private array $data;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->user = User::factory()->create();
+        $this->user = User::factory(2)->create();
+        $this->taskStatus = TaskStatus::factory(10)->create();
         $this->task = Task::factory()->create();
         $this->data = Task::factory()->make()->only(
             [

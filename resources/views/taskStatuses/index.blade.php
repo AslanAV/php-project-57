@@ -52,6 +52,6 @@
     </table>
 </div>
 @auth()
-    {{ $taskStatuses->links('pagination::simple-bootstrap-5') }}
+    <div class="mt-4 grid col-span-full">{{ $taskStatuses->links() }}</div>
 @endauth
 @endsection

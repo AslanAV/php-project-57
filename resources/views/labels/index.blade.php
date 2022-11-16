@@ -54,6 +54,6 @@
     </table>
 </div>
 @auth()
-    {{ $labels->links('pagination::simple-bootstrap-5') }}
+    <div class="mt-4 grid col-span-full">{{ $labels->links() }}</div>
 @endauth
 @endsection

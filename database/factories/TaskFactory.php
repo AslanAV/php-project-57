@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Task;
+use App\Models\TaskStatus;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,8 +19,15 @@ class TaskFactory extends Factory
      */
     public function definition()
     {
+        $maxCountStatus = count(TaskStatus::get());
+        $maxCountCreater = count(User::all());
+        $maxCountAssigned = count(User::all());
         return [
-            //
+            'status_id' => random_int(1, $maxCountStatus),
+            'name' => fake()->unique()->name(),
+            'description' => fake()->unique()->text(),
+            'created_by_id' => User::find(random_int(1, $maxCountCreater)),
+            'assigned_to_id' => User::find(random_int(1, $maxCountAssigned)),
         ];
     }
 }

@@ -16,28 +16,15 @@ class TaskTest extends TestCase
     private User $user1;
     private User $user2;
     private Task $task;
-    private Task $task2;
     private array $data;
-    private array $data2;
-    private TaskStatus $taskStatus;
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->user1 = User::factory()->create();
-        $this->user2 = User::factory()->create();
         $this->taskStatus = TaskStatus::factory()->create();
         $this->task = Task::factory()->create();
         $this->data = Task::factory()->make()->only(
-            [
-                'name',
-                'description',
-                'status_id',
-                'assigned_to_id',
-            ]
-        );
-        $this->task2 = Task::factory()->make();
-        $this->data2 = $this->task2->only(
             [
                 'name',
                 'description',
@@ -119,23 +106,6 @@ class TaskTest extends TestCase
             'status_id',
             'assigned_to_id'
         ]));
-    }
-
-    public function testNotDeleteTaskWithoutCreater(): void
-    {
-        $responseUser1 = $this->actingAs($this->user1)
-            ->withSession(['banned' => false])
-            ->post(route('tasks.store', $this->data2));
-
-
-        $responseUser2 = $this->actingAs($this->user2)
-            ->withSession(['banned' => false])
-            ->delete(route('tasks.destroy', $this->task2));
-
-
-        $responseUser2->assertRedirect();
-
-        $this->assertDatabasehas('tasks', $this->data2);
     }
 
     public function testNotCreateTaskUnauthorized(): void

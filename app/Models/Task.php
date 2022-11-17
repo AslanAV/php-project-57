@@ -22,7 +22,7 @@ class Task extends Model
         'description',
         'status_id',
         'created_by_id',
-        'assigned_by_id',
+        'assigned_to_id',
         'created_at',
     ];
 

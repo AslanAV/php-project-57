@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use App\Models\Label;
 use App\Models\Task;
 use App\Models\TaskStatus;
 use App\Models\User;
@@ -19,69 +20,74 @@ class TaskController extends Controller
         return view('tasks.index', compact('tasks'));
     }
 
+    public function show(Task $task)
+    {
+        return view('tasks.show', compact('task'));
+    }
+
     public function create()
     {
         if (Auth::guest()) {
             return abort(403);
         }
-        $statuses = TaskStatus::all();
-        $users = User::all();
-        return view('tasks.create', compact('statuses', 'users'));
+
+        $statuses = TaskStatus::pluck('name', 'id');
+        $users = User::pluck('name', 'id');
+        $labels = Label::pluck('name', 'id');
+        return view('tasks.create', compact('statuses', 'users', 'labels'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param StoreTaskRequest $request
-     * @return Response
-     */
     public function store(StoreTaskRequest $request)
     {
-        //
+        if (Auth::guest()) {
+            return redirect()->route('tasks.index');
+        }
+
+        $validated = $request->validated();
+        $createdById = Auth::id();
+        $data = [...$validated, 'created_by_id' => $createdById];
+
+        $task = new Task();
+        $task->fill($data);
+        $task->save();
+
+        $message = __('controllers.task_create');
+        flash($message)->success();
+        return redirect()->route('tasks.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param Task $task
-     * @return Response
-     */
-    public function show(Task $task)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Task $task
-     * @return Response
-     */
     public function edit(Task $task)
     {
-        //
+        $statuses = TaskStatus::pluck('name', 'id');
+        $users = User::pluck('name', 'id');
+        $labels = Label::pluck('name', 'id');
+        return view('tasks.edit', compact('statuses', 'users', 'labels', 'task'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param UpdateTaskRequest $request
-     * @param Task $task
-     * @return Response
-     */
     public function update(UpdateTaskRequest $request, Task $task)
     {
-        //
+        if (Auth::guest()) {
+            return redirect()->route('tasks.index');
+        }
+
+        $validated = $request->validated();
+        $createdById = Auth::id();
+        $data = [...$validated, 'created_by_id' => $createdById];
+
+        $task->fill($data);
+        $task->save();
+
+        $message = __('controllers.task_update');
+        flash($message)->success();
+        return redirect()->route('tasks.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param Task $task
-     * @return Response
-     */
     public function destroy(Task $task)
     {
-        //
+        if (Auth::id() === $task->created_by_id) {
+            $task->delete();
+            flash(__('controllers.tasks_destroy'))->success();
+        }
+        return redirect()->route('tasks.index');
     }
 }

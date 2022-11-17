@@ -19,15 +19,18 @@ class TaskFactory extends Factory
      */
     public function definition()
     {
-        $maxCountStatus = count(TaskStatus::get());
-        $maxCountCreater = count(User::all());
-        $maxCountAssigned = count(User::all());
+        $randomIdStatus = random_int(1, count(TaskStatus::get()));
+
+        $maxIdUser = count(User::all());
+        $randomIdAssigned = User::find(random_int(1, $maxIdUser));
+
+        $randomIdCreater = User::find(random_int(1, $maxIdUser));
         return [
-            'status_id' => random_int(1, $maxCountStatus),
+            'status_id' =>  $randomIdStatus,
             'name' => fake()->unique()->name(),
-            'description' => fake()->unique()->text(),
-            'created_by_id' => User::find(random_int(1, $maxCountCreater)),
-            'assigned_to_id' => User::find(random_int(1, $maxCountAssigned)),
+            'description' => fake()->unique()->text(100),
+            'created_by_id' => $randomIdCreater,
+            'assigned_to_id' => $randomIdAssigned,
         ];
     }
 }

@@ -18,7 +18,7 @@ class LabelsTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->user = User::factory()->make();
+        $this->user = User::factory()->create();
         $this->data = Label::factory()->make()->only(['name', 'description']);
         $this->label = Label::factory()->create();
     }

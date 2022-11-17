@@ -53,3 +53,9 @@ sail-migrate-refresh-seed:
 
 route-list:
 	php artisan route:list
+
+sail-ide-helper:
+	./vendor/bin/sail artisan ide-helper:eloquent
+	./vendor/bin/sail artisan ide-helper:gen
+	./vendor/bin/sail artisan ide-helper:meta
+	./vendor/bin/sail artisan ide-helper:mod -n

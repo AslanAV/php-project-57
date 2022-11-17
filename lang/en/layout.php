@@ -27,4 +27,11 @@ return [
     'labels_create' => 'Create Label',
     'label_edit' => 'Edit label',
     'table_delete_question' => 'Are you sure?',
+    'task_header' => 'Tasks',
+    'tasks_create' => 'Create Task',
+    'table_status' => 'Task Status',
+    'table_task_status' => 'Status',
+    'table_creater' => 'Author',
+    'table_assigned' => 'Executor',
+    'tasks_edit' => 'Edit Task',
 ];

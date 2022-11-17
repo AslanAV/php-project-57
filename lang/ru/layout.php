@@ -27,5 +27,11 @@ return [
     'labels_create' => 'Создать метку',
     'label_edit' => 'Изменение метки',
     'table_delete_question' => 'Вы уверены?',
-
+    'task_header' => 'Задачи',
+    'tasks_create' => 'Создать задачу',
+    'table_status' => 'Статус задачи',
+    'table_task_status' => 'Статус',
+    'table_creater' => 'Автор',
+    'table_assigned' => 'Исполнитель',
+    'tasks_edit' => 'Изменение задачи',
 ];

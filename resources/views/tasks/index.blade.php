@@ -22,8 +22,8 @@
                 <th>{{ __('layout.table_id') }}</th>
                 <th>{{ __('layout.table_task_status') }}</th>
                 <th>{{ __('layout.table_name') }}</th>
-                <th>автор</th>
-                <th>испонитель</th>
+                <th>{{ __('layout.table_creater') }}</th>
+                <th>{{ __('layout.table_assigned') }}</th>
                 <th>{{ __('layout.table_date_of_creation') }}</th>
                 @auth()
                     <th>{{ __('layout.table_actions') }}</th>
@@ -35,12 +35,13 @@
                 <tr class="border-b border-dashed text-left">
                     <td>{{ $task->id }}</td>
                     <td>{{ TaskStatusHelper::getNameStatus($task->status_id) }}</td>
-                    <td>{{ $task->name }}</td>
+                    <td><a href="{{ route('tasks.show', $task) }}">{{ $task->name }}</a></td>
                     <td>{{ UserHelper::getNameUser($task->created_by_id) }}</td>
                     <td>{{ UserHelper::getNameUser($task->assigned_to_id) }}</td>
                     <td>{{ $task->created_at }}</td>
                     @auth()
                         <td>
+                            @if(Auth::id() === $task->created_by_id)
                             <a
                                 class="text-red-600 hover:text-red-900"
                                 rel="nofollow"
@@ -50,6 +51,7 @@
                             >
                                 {{ __('layout.table_delete') }}
                             </a>
+                            @endif
                             <a class="text-blue-600 hover:text-blue-900"
                                href="{{ route("tasks.edit", $task) }}"
                             >

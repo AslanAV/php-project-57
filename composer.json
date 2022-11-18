@@ -12,7 +12,8 @@
         "laravel/sanctum": "^3.0.1",
         "laravel/tinker": "^2.7.3",
         "laravelcollective/html": "^6.3.0",
-        "rollbar/rollbar-laravel": "^7.2.0"
+        "rollbar/rollbar-laravel": "^7.2.0",
+        "spatie/laravel-query-builder": "^5.0.3"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.12.3",

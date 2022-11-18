@@ -38,7 +38,7 @@
                 {{ Form::label('labels', __('layout.labels')) }}
             </div>
             <div class="mt-2">
-                {{ Form::select('labels', $labels, null, ['class' => 'form-control rounded border-gray-300 w-1/3 h-32', 'multiple' => 'multiple']) }}
+                {{ Form::select('labels[]', $labels, null, ['class' => 'form-control rounded border-gray-300 w-1/3 h-32', 'multiple' => 'multiple']) }}
             </div>
             <div class="mt-4">
                 {{ Form::submit(__('layout.create_button'), ['class' => 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded']) }}

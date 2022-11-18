@@ -51,6 +51,10 @@ ide-helper:
 sail-migrate-refresh-seed:
 	./vendor/bin/sail artisan migrate:refresh --seed
 
+sail-migrate-drop-database-fresh-seed:
+	./vendor/bin/sail artisan migrate:fresh --seed
+
+
 route-list:
 	php artisan route:list
 

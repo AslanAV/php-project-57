@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             LabelSeeder::class,
             TaskStatusSeeder::class,
             TaskSeeder::class,
+            LabelTaskSeeder::class,
         ]);
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

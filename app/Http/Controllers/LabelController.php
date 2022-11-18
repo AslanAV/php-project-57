@@ -62,6 +62,10 @@ class LabelController extends Controller
 
     public function destroy(Label $label)
     {
+        if ($label->tasks()->exists()) {
+            flash(__('controllers.label_statuses_destroy_failed'))->error();
+            return back();
+        }
         $label->delete();
 
         flash(__('controllers.label_destroy'))->success();

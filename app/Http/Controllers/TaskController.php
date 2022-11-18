@@ -51,6 +51,10 @@ class TaskController extends Controller
         $task->fill($data);
         $task->save();
 
+        if (array_key_exists('label', $validated)) {
+            $task->labels()->attach($validated['labels']);
+        }
+
         $message = __('controllers.task_create');
         flash($message)->success();
         return redirect()->route('tasks.index');
@@ -58,6 +62,9 @@ class TaskController extends Controller
 
     public function edit(Task $task)
     {
+        if (Auth::guest()) {
+            abort(403);
+        }
         $statuses = TaskStatus::pluck('name', 'id');
         $users = User::pluck('name', 'id');
         $labels = Label::pluck('name', 'id');
@@ -77,6 +84,11 @@ class TaskController extends Controller
         $task->fill($data);
         $task->save();
 
+        if (array_key_exists('label', $validated)) {
+            $task->labels()->sync($validated['labels']);
+        }
+
+
         $message = __('controllers.task_update');
         flash($message)->success();
         return redirect()->route('tasks.index');
@@ -85,6 +97,7 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         if (Auth::id() === $task->created_by_id) {
+            $task->labels()->detach();
             $task->delete();
             flash(__('controllers.tasks_destroy'))->success();
         }

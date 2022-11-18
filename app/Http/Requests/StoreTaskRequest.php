@@ -28,6 +28,7 @@ class StoreTaskRequest extends FormRequest
             'status_id' => 'required',
             'assigned_to_id' => 'required',
             'description' => '',
+            'labels' => '',
         ];
     }
 }

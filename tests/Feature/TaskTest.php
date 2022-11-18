@@ -106,11 +106,11 @@ class TaskTest extends TestCase
     {
         $response = $this->actingAs($this->user2)
             ->withSession(['banned' => false])
-            ->delete(route('tasks.destroy', $this->task2));
+            ->delete(route('tasks.destroy', $this->task));
 
         $response->assertRedirect();
 
-        $this->assertDatabaseMissing('tasks', $this->task2->only([
+        $this->assertDatabaseMissing('tasks', $this->task->only([
             'name',
             'description',
             'status_id',

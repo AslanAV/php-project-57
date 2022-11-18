@@ -34,4 +34,5 @@ return [
     'table_creater' => 'Автор',
     'table_assigned' => 'Исполнитель',
     'tasks_edit' => 'Изменение задачи',
+    'create_apply' => 'применить'
 ];

@@ -34,4 +34,5 @@ return [
     'table_creater' => 'Author',
     'table_assigned' => 'Executor',
     'tasks_edit' => 'Edit Task',
+    'create_apply' => 'Apply',
 ];

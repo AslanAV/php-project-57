@@ -17,14 +17,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(15)->create();
+//        User::factory(15)->create();
 
-        $this->call([
-            LabelSeeder::class,
-            TaskStatusSeeder::class,
-            TaskSeeder::class,
-            LabelTaskSeeder::class,
-        ]);
+//        $this->call([
+//            LabelSeeder::class,
+//            TaskStatusSeeder::class,
+//            TaskSeeder::class,
+//            LabelTaskSeeder::class,
+//        ]);
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',

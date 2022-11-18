@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\Label;
 use App\Models\Task;
 use App\Models\TaskStatus;
 use App\Models\User;
@@ -13,28 +12,19 @@ class TaskTest extends TestCase
 {
     use RefreshDatabase;
 
-    private User $user1;
-    private User $user2;
+    private User $user;
+    private TaskStatus $taskStatus;
     private Task $task;
     private array $data;
+
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->user1 = User::factory()->create();
-        $this->user2 = User::factory()->create();
+        $this->user = User::factory()->create();
         $this->taskStatus = TaskStatus::factory()->create();
         $this->task = Task::factory()->create();
-        $this->data = Task::factory()->make()->only(
-            [
-                'name',
-                'description',
-                'status_id',
-                'assigned_to_id',
-            ]
-        );
-        $this->task2 = Task::factory()->create();
-        $this->data2 = $this->task2->only(
+        $this->data = $this->task->only(
             [
                 'name',
                 'description',
@@ -46,7 +36,7 @@ class TaskTest extends TestCase
 
     public function testTasksPage(): void
     {
-        $response = $this->actingAs($this->user1)
+        $response = $this->actingAs($this->user)
             ->withSession(['banned' => false])
             ->get(route('tasks.index'));
 
@@ -55,7 +45,7 @@ class TaskTest extends TestCase
 
     public function testStoreTask(): void
     {
-        $response = $this->actingAs($this->user1)
+        $response = $this->actingAs($this->user)
             ->withSession(['banned' => false])
             ->post(route('tasks.store', $this->data));
 
@@ -66,16 +56,22 @@ class TaskTest extends TestCase
 
     public function testNotCreateStoreTaskWithoutAuthorized(): void
     {
-        $response = $this->post(route('tasks.store', $this->data));
+        $data = Task::factory()->make()->only([
+            'name',
+            'description',
+            'status_id',
+            'assigned_to_id',
+        ]);
+        $response = $this->post(route('tasks.store', $data));
 
         $response->assertRedirect('tasks');
 
-        $this->assertDatabaseMissing('tasks', $this->data);
+        $this->assertDatabaseMissing('tasks', $data);
     }
 
     public function testEditPage(): void
     {
-        $response = $this->actingAs($this->user1)
+        $response = $this->actingAs($this->user)
                         ->withSession(['banned' => false])
                         ->get(route('tasks.edit', $this->task));
 
@@ -84,60 +80,75 @@ class TaskTest extends TestCase
 
     public function testUpdateTask(): void
     {
-        $response = $this->actingAs($this->user1)
+        $data = Task::factory()->make()->only([
+            'name',
+            'description',
+            'status_id',
+            'assigned_to_id',
+        ]);
+        $response = $this->actingAs($this->user)
             ->withSession(['banned' => false])
-            ->put(route('tasks.update', $this->task), $this->data);
+            ->put(route('tasks.update', $this->task), $data);
 
         $response->assertRedirect('/tasks');
 
-        $this->assertDatabaseHas('tasks', $this->data);
+        $this->assertDatabaseHas('tasks', $data);
     }
 
     public function testNotUpdateTaskWithoutAuthorized(): void
     {
-        $response = $this->put(route('tasks.update', $this->task), $this->data);
+        $data = Task::factory()->make()->only([
+            'name',
+            'description',
+            'status_id',
+            'assigned_to_id',
+        ]);
+
+        $response = $this->put(route('tasks.update', $this->task), $data);
 
         $response->assertRedirect('/tasks');
 
-        $this->assertDatabaseMissing('tasks', $this->data);
+        $this->assertDatabaseMissing('tasks', $data);
     }
 
     public function testDeleteTask(): void
     {
-        $response = $this->actingAs($this->user2)
+        $response = $this->actingAs($this->user)
             ->withSession(['banned' => false])
             ->delete(route('tasks.destroy', $this->task));
 
         $response->assertRedirect();
 
-        $this->assertDatabaseMissing('tasks', $this->task->only([
-            'name',
-            'description',
-            'status_id',
-            'assigned_to_id'
-        ]));
+        $this->assertDatabaseMissing('tasks', $this->data);
     }
 
     public function testNotDeleteTaskWithoutCreater(): void
     {
-        $responseUser1 = $this->actingAs($this->user1)
+        $responseUser = $this->actingAs($this->user)
             ->withSession(['banned' => false])
-            ->post(route('tasks.store', $this->data2));
+            ->post(route('tasks.store', $this->data));
 
-
-        $responseUser2 = $this->actingAs($this->user2)
+        $user2 = User::factory()->create();
+        $responseUser2 = $this->actingAs($user2)
             ->withSession(['banned' => false])
-            ->delete(route('tasks.destroy', $this->task2));
+            ->delete(route('tasks.destroy', $this->task));
 
 
         $responseUser2->assertRedirect();
 
-        $this->assertDatabasehas('tasks', $this->data2);
+        $this->assertDatabasehas('tasks', $this->data);
     }
 
     public function testNotCreateTaskUnauthorized(): void
     {
         $response = $this->get(route('tasks.create'));
+
+        $response->assertStatus(403);
+    }
+
+    public function testNotEditTaskUnauthorized(): void
+    {
+        $response = $this->get(route('tasks.edit', $this->task));
 
         $response->assertStatus(403);
     }

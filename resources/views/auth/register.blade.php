@@ -55,7 +55,7 @@
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-primary-button class="ml-4">
+                <x-primary-button class="ml-4 " style="text-transform: capitalize">
                     {{ __('auth.Register') }}
                 </x-primary-button>
             </div>

@@ -14,7 +14,9 @@
                 {{ Form::text('name', '', ['class' => 'form-control rounded border-gray-300 w-1/3']) }}
             </div>
             <div>
-                @includeWhen($errors->any() ,'layouts.errors-validation')
+                @if ($errors->any())
+                    {{ $errors->first('name') }}
+                @endif
             </div>
             <div class="mt-4">
                 {{ Form::label('description', __('layout.table_description')) }}
@@ -28,11 +30,21 @@
             <div class="mt-2">
                 {{ Form::select('status_id', $statuses, null, ['class' => 'form-control rounded border-gray-300 w-1/3', 'placeholder' => '----------']) }}
             </div>
+            <div>
+                @if ($errors->any())
+                    {{ $errors->first('status_id') }}
+                @endif
+            </div>
             <div class="mt-4">
                 {{ Form::label('assigned_to_id', __('layout.table_assigned')) }}
             </div>
             <div class="mt-2">
                 {{ Form::select('assigned_to_id', $users, null, ['class' => 'form-control rounded border-gray-300 w-1/3', 'placeholder' => '----------']) }}
+            </div>
+            <div>
+                @if ($errors->any())
+                    {{ $errors->first('assigned_to_id') }}
+                @endif
             </div>
             <div class="mt-4">
                 {{ Form::label('labels', __('layout.labels')) }}

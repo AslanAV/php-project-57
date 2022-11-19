@@ -27,4 +27,16 @@ class StoreTaskStatusRequest extends FormRequest
             'name' => 'required'
         ];
     }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'name.required' => __('controllers.required_error'),
+        ];
+    }
 }

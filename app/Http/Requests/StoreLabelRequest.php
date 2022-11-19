@@ -41,5 +41,4 @@ class StoreLabelRequest extends FormRequest
             'name.unique' => __('controllers.unique_error_label'),
         ];
     }
-
 }

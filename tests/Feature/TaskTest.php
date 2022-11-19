@@ -13,7 +13,6 @@ class TaskTest extends TestCase
     use RefreshDatabase;
 
     private User $user;
-    private TaskStatus $taskStatus;
     private Task $task;
     private array $data;
 
@@ -22,7 +21,7 @@ class TaskTest extends TestCase
     {
         parent::setUp();
         $this->user = User::factory()->create();
-        $this->taskStatus = TaskStatus::factory()->create();
+        TaskStatus::factory()->create();
         $this->task = Task::factory()->create();
         $this->data = $this->task->only(
             [
@@ -142,7 +141,7 @@ class TaskTest extends TestCase
 
         $responseUser2->assertRedirect();
 
-        $this->assertDatabasehas('tasks', $this->data);
+        $this->assertDatabaseHas('tasks', $this->data);
     }
 
     public function testNotCreateTaskUnauthorized(): void

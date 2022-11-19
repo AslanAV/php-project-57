@@ -45,13 +45,19 @@ class TaskTest extends TestCase
 
     public function testStoreTask(): void
     {
+        $data = Task::factory()->make()->only([
+            'name',
+            'description',
+            'status_id',
+            'assigned_to_id',
+        ]);
         $response = $this->actingAs($this->user)
             ->withSession(['banned' => false])
-            ->post(route('tasks.store', $this->data));
+            ->post(route('tasks.store', $data));
 
         $response->assertRedirect('/tasks');
 
-        $this->assertDatabaseHas('tasks', $this->data);
+        $this->assertDatabaseHas('tasks', $data);
     }
 
     public function testNotCreateStoreTaskWithoutAuthorized(): void

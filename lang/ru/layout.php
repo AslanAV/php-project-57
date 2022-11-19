@@ -34,7 +34,7 @@ return [
     'table_creater' => 'Автор',
     'table_assigned' => 'Исполнитель',
     'tasks_edit' => 'Изменение задачи',
-    'create_apply' => 'применить',
+    'create_apply' => 'Применить',
     'create_button_task_statuses' => 'Создать статус',
     'create_button_label' => 'Создать метку',
     'create_button_task' => 'Создать задачу',

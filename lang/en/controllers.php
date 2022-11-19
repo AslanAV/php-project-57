@@ -13,4 +13,5 @@ return [
     'tasks_update' => 'Task update successful',
     'tasks_destroy' => 'Task delete successful',
     'tasks_destroy_failed' => 'Task delete failed',
+    'required_error' => 'This is a required field'
 ];

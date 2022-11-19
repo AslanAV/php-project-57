@@ -49,7 +49,7 @@
                 @endif
 
                 <x-primary-button class="ml-3">
-                    Вход
+                    Войти
                 </x-primary-button>
             </div>
         </form>

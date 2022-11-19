@@ -23,6 +23,7 @@
         "laravel/sail": "^1.16.2",
         "mockery/mockery": "^1.5.1",
         "nunomaduro/collision": "^6.3.1",
+        "phpstan/phpstan": "^1.9",
         "phpunit/phpunit": "^9.5.26",
         "roave/security-advisories": "dev-latest",
         "spatie/laravel-ignition": "^1.6.1",
@@ -41,6 +42,8 @@
         }
     },
     "scripts": {
+        "phpcs": "phpcs",
+        "phpcbf": "phpcbf",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"

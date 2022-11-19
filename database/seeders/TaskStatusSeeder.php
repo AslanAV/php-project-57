@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use DB;
 
-
 class TaskStatusSeeder extends Seeder
 {
     /**

@@ -24,7 +24,7 @@ class StoreTaskRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|unique:tasks,name',
             'status_id' => 'required',
             'assigned_to_id' => 'required',
             'description' => '',
@@ -40,6 +40,7 @@ class StoreTaskRequest extends FormRequest
     {
         return [
             'name.required' => __('controllers.required_error'),
+            'name.unique' => __('controllers.unique_error_task'),
             'status_id.required' => __('controllers.required_error'),
             'assigned_to_id.required' => __('controllers.required_error'),
         ];

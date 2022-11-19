@@ -12,4 +12,5 @@ return [
     'tasks_create' => 'Task create successful',
     'tasks_update' => 'Task update successful',
     'tasks_destroy' => 'Task delete successful',
+    'tasks_destroy_failed' => 'Task delete failed',
 ];

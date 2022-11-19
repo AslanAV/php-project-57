@@ -10,12 +10,13 @@ use App\Models\TaskStatus;
 use App\Models\User;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class TaskController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $taskStatuses = TaskStatus::pluck('name', 'id')->all();
         $users = User::pluck('name', 'id')->all();
@@ -116,6 +117,8 @@ class TaskController extends Controller
             $task->labels()->detach();
             $task->delete();
             flash(__('controllers.tasks_destroy'))->success();
+        } else {
+            flash(__('tasks_destroy_failed'))->error();
         }
         return redirect()->route('tasks.index');
     }

@@ -12,4 +12,5 @@ return [
     'tasks_create' => 'Задача успешно создана',
     'tasks_update' => 'Задача успешно изменена',
     'tasks_destroy' => 'Задача успешно удалена',
+    'tasks_destroy_failed' => 'Не удалось удалить задачу'
 ];

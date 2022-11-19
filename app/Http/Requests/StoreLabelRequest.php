@@ -24,7 +24,7 @@ class StoreLabelRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|unique:labels,name',
             'description' => ''
         ];
     }
@@ -38,6 +38,7 @@ class StoreLabelRequest extends FormRequest
     {
         return [
             'name.required' => __('controllers.required_error'),
+            'name.unique' => __('controllers.unique_error_label'),
         ];
     }
 

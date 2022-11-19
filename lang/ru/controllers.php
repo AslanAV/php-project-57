@@ -13,5 +13,7 @@ return [
     'tasks_update' => 'Задача успешно изменена',
     'tasks_destroy' => 'Задача успешно удалена',
     'tasks_destroy_failed' => 'Не удалось удалить задачу',
-    'required_error' => 'Это обязательное поле'
+    'required_error' => 'Это обязательное поле',
+    'unique_error_status' => 'Статус с таким именем уже существует',
+    'unique_error_label' => 'Метка с таким именем уже существует'
 ];

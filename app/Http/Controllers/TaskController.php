@@ -72,7 +72,7 @@ class TaskController extends Controller
             $task->labels()->attach($validated['labels']);
         }
 
-        $message = __('controllers.task_create');
+        $message = __('controllers.tasks_create');
         flash($message)->success();
         return redirect()->route('tasks.index');
     }
@@ -106,7 +106,7 @@ class TaskController extends Controller
         }
 
 
-        $message = __('controllers.task_update');
+        $message = __('controllers.tasks_update');
         flash($message)->success();
         return redirect()->route('tasks.index');
     }

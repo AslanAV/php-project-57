@@ -8,7 +8,7 @@
     <div>
         @csrf
         <a href="{{ route('labels.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            {{ __('layout.create_button') }}            </a>
+            {{ __('layout.create_button_label') }}            </a>
     </div>
     @endauth
     <table class="mt-4">

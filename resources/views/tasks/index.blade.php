@@ -33,7 +33,7 @@
                     @csrf
                     <a href="{{ route('tasks.create') }}"
                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        {{ __('layout.create_button') }}           </a>
+                        {{ __('layout.create_button_task') }}           </a>
                     @endauth
                 </div>
         </div>

@@ -35,4 +35,7 @@ return [
     'table_assigned' => 'Executor',
     'tasks_edit' => 'Edit Task',
     'create_apply' => 'Apply',
+    'create_button_task_statuses' => 'Create status',
+    'create_button_label' => 'Create label',
+    'create_button_task' => 'Create task',
 ];

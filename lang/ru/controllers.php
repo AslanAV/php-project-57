@@ -6,7 +6,7 @@ return [
     'label_destroy' => 'Метка успешно удалена',
     'label_statuses_destroy_failed' => 'Не удалось удалить метку',
     'task_statuses_create' => 'Статус успешно создан',
-    'task_statuses_update' => 'Статус успешно изменен',
+    'task_statuses_update' => 'Статус успешно изменён',
     'task_statuses_destroy' => 'Статус успешно удалён',
     'task_statuses_destroy_failed' => 'Не удалось удалить статус',
     'tasks_create' => 'Задача успешно создана',

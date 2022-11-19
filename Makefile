@@ -54,6 +54,8 @@ sail-migrate-refresh-seed:
 sail-migrate-drop-database-fresh-seed:
 	./vendor/bin/sail artisan migrate:fresh --seed
 
+stan:
+	./vendor/bin/phpstan analyse
 
 route-list:
 	php artisan route:list

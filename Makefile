@@ -62,3 +62,6 @@ sail-ide-helper:
 	./vendor/bin/sail artisan ide-helper:gen
 	./vendor/bin/sail artisan ide-helper:meta
 	./vendor/bin/sail artisan ide-helper:mod -n
+
+docker-setup-start-detached:
+	./vendor/bin/sail up -d

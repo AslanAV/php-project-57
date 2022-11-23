@@ -14,7 +14,6 @@ class TaskTest extends TestCase
     private Task $task;
     private array $data;
 
-
     protected function setUp(): void
     {
         parent::setUp();

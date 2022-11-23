@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class LabelsTest extends TestCase
+class LabelTest extends TestCase
 {
     private User $user;
     private Label $label;

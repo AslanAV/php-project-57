@@ -10,8 +10,6 @@ use Tests\TestCase;
 
 class TaskStatusTest extends TestCase
 {
-    use RefreshDatabase;
-
     private User $user;
     private TaskStatus $taskStatus;
     private array $data;

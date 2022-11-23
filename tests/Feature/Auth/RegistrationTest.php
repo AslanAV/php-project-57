@@ -8,8 +8,6 @@ use Tests\TestCase;
 
 class RegistrationTest extends TestCase
 {
-    use RefreshDatabase;
-
     public function testRegistrationScreenCanBeRendered()
     {
         $response = $this->get('/register');

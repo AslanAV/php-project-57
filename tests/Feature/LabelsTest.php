@@ -9,8 +9,6 @@ use Tests\TestCase;
 
 class LabelsTest extends TestCase
 {
-    use RefreshDatabase;
-
     private User $user;
     private Label $label;
     private array $data;

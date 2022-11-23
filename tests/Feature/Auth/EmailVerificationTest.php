@@ -12,8 +12,6 @@ use Tests\TestCase;
 
 class EmailVerificationTest extends TestCase
 {
-    use RefreshDatabase;
-
     public function testEmailVerificationScreenCanBeRendered()
     {
         $user = User::factory()->create([

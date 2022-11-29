@@ -24,11 +24,28 @@ class UpdateTaskRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|unique:tasks,name|max:255',
             'status_id' => 'required',
             'assigned_to_id' => 'required',
-            'description' => '',
+            'description' => 'max:255',
             'labels' => 'array|nullable',
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'name.required' => __('controllers.required_error'),
+            'name.unique' => __('controllers.unique_error_task'),
+            'status_id.required' => __('controllers.required_error'),
+            'assigned_to_id.required' => __('controllers.required_error'),
+            'name.max' => __('controllers.max_error'),
+            'description.max' => __('controllers.max_error'),
         ];
     }
 }

@@ -16,5 +16,6 @@ return [
     'required_error' => 'This is a required field',
     'unique_error_status' => 'A status with the same name already exists',
     'unique_error_label' => 'A label with the same name already exists',
+    'max_error' => 'Maximum number of characters: 255',
     'unique_error_task' => 'A task with the same name already exists',
 ];

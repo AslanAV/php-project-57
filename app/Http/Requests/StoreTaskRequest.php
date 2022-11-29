@@ -24,10 +24,10 @@ class StoreTaskRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:tasks,name',
+            'name' => 'required|unique:tasks,name|max:255',
             'status_id' => 'required',
             'assigned_to_id' => 'required',
-            'description' => '',
+            'description' => 'max:255',
             'labels' => '',
         ];
     }
@@ -43,6 +43,8 @@ class StoreTaskRequest extends FormRequest
             'name.unique' => __('controllers.unique_error_task'),
             'status_id.required' => __('controllers.required_error'),
             'assigned_to_id.required' => __('controllers.required_error'),
+            'name.max' => __('controllers.max_error'),
+            'description.max' => __('controllers.max_error'),
         ];
     }
 }

@@ -24,8 +24,23 @@ class UpdateLabelRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'description' => ''
+            'name' => 'required|unique:labels,name|max:255',
+            'description' => 'max:255'
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'name.required' => __('controllers.required_error'),
+            'name.unique' => __('controllers.unique_error_label'),
+            'name.max' => __('controllers.max_error'),
+            'description.max' => __('controllers.max_error'),
         ];
     }
 }

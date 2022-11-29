@@ -24,6 +24,9 @@
             <div class="mt-2">
                 {{ Form::textarea('description', '', ['class' => 'rounded border-gray-300 w-1/3 h-32']) }}
             </div>
+            @if ($errors->any())
+                {{ $errors->first('description') }}
+            @endif
             <div class="mt-4">
                 {{ Form::label('status_id', __('layout.table_status')) }}
             </div>

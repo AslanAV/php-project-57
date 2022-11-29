@@ -14,7 +14,9 @@
                 {{ Form::text('name', '', ['class' => 'form-control rounded border-gray-300 w-1/3']) }}
             </div>
             <div>
-                @includeWhen($errors->any() ,'layouts.errors-validation')
+                @if ($errors->any())
+                    {{ $errors->first('name') }}
+                @endif
             </div>
             <div class="mt-2">
                 {{ Form::label('name', __('layout.table_description')) }}
@@ -22,6 +24,9 @@
             <div class="mt-2">
                 {{ Form::textarea('description', '', ['class' => 'form-control rounded border-gray-300 w-1/3 h-32', 'cols' => '50', 'rows' => '10']) }}
             </div>
+            @if ($errors->any())
+                {{ $errors->first('description') }}
+            @endif
             <div class="mt-2">
                 {{ Form::submit(__('layout.create_button'), ['class' => 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded']) }}
             </div>

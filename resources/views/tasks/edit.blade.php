@@ -14,7 +14,9 @@
                     {{ Form::text('name', $task->name, ['class' => 'form-control rounded border-gray-300 w-1/3']) }}
                 </div>
                 <div>
-                    @includeWhen($errors->any() ,'layouts.errors-validation')
+                    @if ($errors->any())
+                        {{ $errors->first('name') }}
+                    @endif
                 </div>
                 <div class="mt-4">
                     {{ Form::label('description', __('layout.table_description')) }}
@@ -22,18 +24,27 @@
                 <div class="mt-2">
                     {{ Form::textarea('description', $task->description, ['class' => 'rounded border-gray-300 w-1/3 h-32']) }}
                 </div>
+                @if ($errors->any())
+                    {{ $errors->first('description') }}
+                @endif
                 <div class="mt-4">
                     {{ Form::label('status_id', __('layout.table_status')) }}
                 </div>
                 <div class="mt-2">
                     {{ Form::select('status_id', $statuses, $task->status_id, ['class' => 'form-control rounded border-gray-300 w-1/3', 'placeholder' => '----------']) }}
                 </div>
+                @if ($errors->any())
+                    {{ $errors->first('status_id') }}
+                @endif
                 <div class="mt-4">
                     {{ Form::label('assigned_to_id', __('layout.table_assigned')) }}
                 </div>
                 <div class="mt-2">
                     {{ Form::select('assigned_to_id', $users, $task->assigned_to_id, ['class' => 'form-control rounded border-gray-300 w-1/3', 'placeholder' => '----------']) }}
                 </div>
+                @if ($errors->any())
+                    {{ $errors->first('assigned_to_id') }}
+                @endif
                 <div class="mt-4">
                     {{ Form::label('labels', __('layout.labels')) }}
                 </div>

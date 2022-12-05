@@ -37,7 +37,7 @@ class TaskStatusTest extends TestCase
             ->withSession(['banned' => false])
             ->post(route('task_statuses.store', $this->data));
 
-        $response->assertRedirect('/task_statuses');
+        $response->assertRedirect(route('task_statuses.index'));
 
         $this->assertDatabaseHas('task_statuses', $this->data);
     }
@@ -46,7 +46,7 @@ class TaskStatusTest extends TestCase
     {
         $response = $this->post(route('task_statuses.store', $this->data));
 
-        $response->assertRedirect('task_statuses');
+        $response->assertRedirect(route('task_statuses.index'));
 
         $this->assertDatabaseMissing('task_statuses', $this->data);
     }
@@ -66,7 +66,7 @@ class TaskStatusTest extends TestCase
             ->withSession(['banned' => false])
             ->put(route('task_statuses.update', $this->taskStatus), $this->data);
 
-        $response->assertRedirect('/task_statuses');
+        $response->assertRedirect(route('task_statuses.index'));
 
         $this->assertDatabaseHas('task_statuses', $this->data);
     }
@@ -75,7 +75,7 @@ class TaskStatusTest extends TestCase
     {
         $response = $this->put(route('task_statuses.update', $this->taskStatus), $this->data);
 
-        $response->assertRedirect('/task_statuses');
+        $response->assertRedirect(route('task_statuses.index'));
 
         $this->assertDatabaseMissing('task_statuses', $this->data);
     }
@@ -86,7 +86,7 @@ class TaskStatusTest extends TestCase
             ->withSession(['banned' => false])
             ->delete(route('task_statuses.destroy', $this->taskStatus));
 
-        $response->assertRedirect();
+        $response->assertRedirect(route('task_statuses.index'));
 
         $this->assertDatabaseMissing('task_statuses', $this->taskStatus->only(['name']));
     }

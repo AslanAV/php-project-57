@@ -24,7 +24,7 @@ class UpdateTaskRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:tasks,name|max:255',
+            'name' => 'required|max:255',
             'status_id' => 'required',
             'assigned_to_id' => 'required',
             'description' => 'max:255',
@@ -41,7 +41,6 @@ class UpdateTaskRequest extends FormRequest
     {
         return [
             'name.required' => __('controllers.required_error'),
-            'name.unique' => __('controllers.unique_error_task'),
             'status_id.required' => __('controllers.required_error'),
             'assigned_to_id.required' => __('controllers.required_error'),
             'name.max' => __('controllers.max_error'),

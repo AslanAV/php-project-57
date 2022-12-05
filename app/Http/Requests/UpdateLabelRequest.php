@@ -24,7 +24,7 @@ class UpdateLabelRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:labels,name|max:255',
+            'name' => 'required|max:255',
             'description' => 'max:255'
         ];
     }
@@ -38,7 +38,6 @@ class UpdateLabelRequest extends FormRequest
     {
         return [
             'name.required' => __('controllers.required_error'),
-            'name.unique' => __('controllers.unique_error_label'),
             'name.max' => __('controllers.max_error'),
             'description.max' => __('controllers.max_error'),
         ];

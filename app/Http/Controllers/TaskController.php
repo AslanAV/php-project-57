@@ -68,7 +68,7 @@ class TaskController extends Controller
         $task->fill($data);
         $task->save();
 
-        if (array_key_exists('label', $validated)) {
+        if (array_key_exists('labels', $validated)) {
             $task->labels()->attach($validated['labels']);
         }
 
@@ -95,16 +95,16 @@ class TaskController extends Controller
         }
 
         $validated = $request->validated();
-        $createdById = Auth::id();
+        $createdById = $task->created_by_id;
         $data = [...$validated, 'created_by_id' => $createdById];
 
         $task->fill($data);
-        $task->save();
 
-        if (array_key_exists('label', $validated)) {
+
+        if (array_key_exists('labels', $validated)) {
             $task->labels()->sync($validated['labels']);
         }
-
+        $task->save();
 
         $message = __('controllers.tasks_update');
         flash($message)->success();
